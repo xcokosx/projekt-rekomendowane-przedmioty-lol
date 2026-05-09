@@ -138,8 +138,8 @@ def assert_flat_player(p):
     assert "enemy_team" not in p
     
 
-with open("./app/matches.json", "r", encoding="utf-8") as f:
-#with open("./app/match.json", "r", encoding="utf-8") as f:                 #DEBUGGING PURPOSES, SMALLER DATASET
+with open("./app/data/matches.json", "r", encoding="utf-8") as f:
+#with open("./app/data/match.json", "r", encoding="utf-8") as f:                 #DEBUGGING PURPOSES, SMALLER DATASET
     data = json.load(f)
 
 from collections import defaultdict
@@ -170,8 +170,8 @@ for mid, players in by_match.items():
     samples.extend(create_training_samples(match))
 #print(json.dumps(samples, indent=4)) ------------------- DO NOT UNCOMMENT, TOO MUCH DATA OVER 10000 RECORDS
 
-output_path = "./app/preprocessed_match_champion_data.json"
-#output_path = "./app/preprocessed_match_champion_data_testing.json"        #DEBUGGING PURPOSES, SMALLER DATASET
+output_path = "./app/data/preprocessed_match_champion_data.json"
+#output_path = "./app/data/preprocessed_match_champion_data_testing.json"        #DEBUGGING PURPOSES, SMALLER DATASET
 with open(output_path, "w", encoding="utf-8") as f:
     json.dump(samples, f, indent=4, ensure_ascii=False)
 

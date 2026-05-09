@@ -1,0 +1,262 @@
+[
+    {
+        "champion": "TwistedFate",
+        "role": "TOP",
+        "ally_team": [
+            "Qiyana",
+            "Katarina",
+            "Varus",
+            "Galio"
+        ],
+        "enemy_team": [
+            "Olaf",
+            "Lillia",
+            "Aurora",
+            "Smolder",
+            "Janna"
+        ],
+        "items": [
+            3033,
+            3009,
+            6672,
+            6676,
+            3094,
+            3153
+        ],
+        "win": 0
+    },
+    {
+        "champion": "Qiyana",
+        "role": "JUNGLE",
+        "ally_team": [
+            "TwistedFate",
+            "Katarina",
+            "Varus",
+            "Galio"
+        ],
+        "enemy_team": [
+            "Olaf",
+            "Lillia",
+            "Aurora",
+            "Smolder",
+            "Janna"
+        ],
+        "items": [
+            6694,
+            6698,
+            6699,
+            6696,
+            3814,
+            6695
+        ],
+        "win": 0
+    },
+    {
+        "champion": "Katarina",
+        "role": "MID",
+        "ally_team": [
+            "TwistedFate",
+            "Qiyana",
+            "Varus",
+            "Galio"
+        ],
+        "enemy_team": [
+            "Olaf",
+            "Lillia",
+            "Aurora",
+            "Smolder",
+            "Janna"
+        ],
+        "items": [
+            3089,
+            3100,
+            3157,
+            4645,
+            3175,
+            3135
+        ],
+        "win": 0
+    },
+    {
+        "champion": "Varus",
+        "role": "BOT",
+        "ally_team": [
+            "TwistedFate",
+            "Qiyana",
+            "Katarina",
+            "Galio"
+        ],
+        "enemy_team": [
+            "Olaf",
+            "Lillia",
+            "Aurora",
+            "Smolder",
+            "Janna"
+        ],
+        "items": [
+            3031,
+            3153,
+            2523,
+            3123,
+            1036,
+            1018
+        ],
+        "win": 0
+    },
+    {
+        "champion": "Galio",
+        "role": "SUPPORT",
+        "ally_team": [
+            "TwistedFate",
+            "Qiyana",
+            "Katarina",
+            "Varus"
+        ],
+        "enemy_team": [
+            "Olaf",
+            "Lillia",
+            "Aurora",
+            "Smolder",
+            "Janna"
+        ],
+        "items": [
+            3876,
+            3111,
+            3190,
+            3110,
+            2524,
+            1057
+        ],
+        "win": 0
+    },
+    {
+        "champion": "Olaf",
+        "role": "TOP",
+        "ally_team": [
+            "Lillia",
+            "Aurora",
+            "Smolder",
+            "Janna"
+        ],
+        "enemy_team": [
+            "TwistedFate",
+            "Qiyana",
+            "Katarina",
+            "Varus",
+            "Galio"
+        ],
+        "items": [
+            3065,
+            3074,
+            3047,
+            3073,
+            3156,
+            6333
+        ],
+        "win": 1
+    },
+    {
+        "champion": "Lillia",
+        "role": "JUNGLE",
+        "ally_team": [
+            "Olaf",
+            "Aurora",
+            "Smolder",
+            "Janna"
+        ],
+        "enemy_team": [
+            "TwistedFate",
+            "Qiyana",
+            "Katarina",
+            "Varus",
+            "Galio"
+        ],
+        "items": [
+            3157,
+            6653,
+            1057,
+            3008,
+            4633,
+            3116
+        ],
+        "win": 1
+    },
+    {
+        "champion": "Aurora",
+        "role": "MID",
+        "ally_team": [
+            "Olaf",
+            "Lillia",
+            "Smolder",
+            "Janna"
+        ],
+        "enemy_team": [
+            "TwistedFate",
+            "Qiyana",
+            "Katarina",
+            "Varus",
+            "Galio"
+        ],
+        "items": [
+            1052,
+            6655,
+            3175,
+            4645,
+            4646,
+            3089
+        ],
+        "win": 1
+    },
+    {
+        "champion": "Smolder",
+        "role": "BOT",
+        "ally_team": [
+            "Olaf",
+            "Lillia",
+            "Aurora",
+            "Janna"
+        ],
+        "enemy_team": [
+            "TwistedFate",
+            "Qiyana",
+            "Katarina",
+            "Varus",
+            "Galio"
+        ],
+        "items": [
+            1038,
+            6697,
+            3508,
+            2517,
+            3094,
+            3036
+        ],
+        "win": 1
+    },
+    {
+        "champion": "Janna",
+        "role": "SUPPORT",
+        "ally_team": [
+            "Olaf",
+            "Lillia",
+            "Aurora",
+            "Smolder"
+        ],
+        "enemy_team": [
+            "TwistedFate",
+            "Qiyana",
+            "Katarina",
+            "Varus",
+            "Galio"
+        ],
+        "items": [
+            3870,
+            3222,
+            3107,
+            1082,
+            6617,
+            3009
+        ],
+        "win": 1
+    }
+]

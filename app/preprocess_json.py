@@ -18,9 +18,10 @@ ROLE_MAP = {
 
 
 def get_team_players(match_data, team_id):
+    tid = str(team_id)
     return [
         p for p in match_data
-        if p.get("team_id") == team_id
+        if str(p.get("team_id")) == tid
     ]
 
 def sort_players_by_role(players):

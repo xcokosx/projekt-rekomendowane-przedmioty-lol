@@ -157,7 +157,7 @@ def run():
 
             conn.commit()
 
-            print(f"✔ SAVED {match_id}")
+            print(f"SAVED {match_id}")
 
         except Exception as e:
 

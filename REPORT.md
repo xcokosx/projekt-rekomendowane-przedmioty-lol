@@ -5,5 +5,11 @@
    pobraliśmy dane 250 graczy o najwyższej randze w grze. Na podstawie ich "puuid" pobraliśmy
    po 50 ich ostacnich meczu. Następnie usuneliśmy duplikaty, żeby za chwilę stworzone dane nie były kilkukrotnie zduplikowane. Dzięki zdobytym "match_id" pobieramy dane o meczu i jego uczestnikach
 
-    !!! W przypadku chęci przetestowania wymagane jest: 1. Postawienie serwera wraz ze stworzeniem tabeli z folderu data oraz podpięcie go pod riot_scraper.py . 2. Stworzenie konta na stronie developera w celu uzyskania własnego klucza API, ponieważ
-    klucze te są ważne tylko 24 godziny. 3. Wymagane jest pobranie listy graczy ze strony developera oraz zapisanie jej do pliku player_data.json .
+   #!!!1. Stworzenie konta na stronie developera w celu uzyskania własnego klucza API, ponieważ klucze te są ważne tylko 24 godziny. 
+    
+
+   2. preprocessor_json.py konwertuje plik matches.json do preprocessed_match_champion_data.json w celu łatwiejszego dostępu do danych o meczu  
+      rozegranym przez bohatera (jego sojuszników, przeciwników oraz zakupionych przedmiotów, a także jego aleję).
+
+      Skrypt rozróżnia oraz grupuje mecze na podstawie match_id dołącza do rekordów, sojuszników oraz przeciwników z danego meczu.
+      Zamienia nazwę bohatera na jego odpowiednik ID, podobnie robi z przedmiotami, oraz innymi bohaterami, którzy brali udział w grze, również zmienia on aleję na jej ID.

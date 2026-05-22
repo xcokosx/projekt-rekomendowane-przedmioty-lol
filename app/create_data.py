@@ -185,6 +185,30 @@ async def main():
 
         print("DONE")
 
+#helper function to flatten participant data into a single row for the dataframe
+def flatten_participant(match, p):
+    return {
+        "match_id": match["metadata"]["matchId"],
+        "puuid": p.get("puuid"),
+        "mapId": match["info"].get("mapId"),
+        "team_id": 0 if p.get("teamId") == 100 else 1,
+        "win": p.get("win"),
+        "gameDuration": match["info"].get("gameDuration"),
+        "goldEarned": p.get("goldEarned"),
+        "champion": p.get("championName"),
+        "position": p.get("teamPosition"),
+        "kills": p.get("kills", 0),
+        "deaths": p.get("deaths", 0),
+        "assists": p.get("assists", 0),
+        "item0": p.get("item0", 0),
+        "item1": p.get("item1", 0),
+        "item2": p.get("item2", 0),
+        "item3": p.get("item3", 0),
+        "item4": p.get("item4", 0),
+        "item5": p.get("item5", 0),
+        "item6": p.get("item6", 0),
+    }
 
-if __name__ == "__main__":
+
+def run():
     asyncio.run(main())

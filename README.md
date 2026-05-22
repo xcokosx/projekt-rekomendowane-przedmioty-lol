@@ -10,7 +10,11 @@
 ## Test
 
 ```shell
+#run tests
 uv run pytest
+
+#run cli script
+uv run python -m app.main
 ```
 
 ## Security

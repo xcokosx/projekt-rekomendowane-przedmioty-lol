@@ -14,7 +14,9 @@ include in gameData:
 #gameDuration
 #mapId
 #gold
-gold_norm = log(gold/gameDuration)/log(1+1000)
+glim = gameDuration/60000
+gpm = gold/glim
+gold_norm = min(1,1/ln(1+gpm)/ln(1001))
 
 ward items id, it is for model to ignore those in build recommendations
 Control Ward: 2055

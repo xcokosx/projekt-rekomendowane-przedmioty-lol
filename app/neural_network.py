@@ -7,73 +7,72 @@ class ItemRanker:
     
     def __init__(self, n, hidden=64, seed=None, b=None):
         self.rand = random.Random(seed)
-        self.w1 = [[self.rand.uniform(-0.1, 0.1) for _ in range(n)] for _ in range(hidden)]
-        self.w2 = [self.rand.uniform(-0.1, 0.1) for _ in range(hidden)]
-        self.b = b if b!=None else 0.0
-    
-    def _sigmoid(x):
-        return 1 / (1 + np.exp(-x))
         
+        limit = 1 / math.sqrt(n)
+        self.w1 = np.array([[self.rand.uniform(-limit, limit) for _ in range(n)] for _ in range(hidden)], dtype=np.float32)
+        self.w2 = np.array([self.rand.uniform(-0.1, 0.1) for _ in range(hidden)], dtype=np.float32)
+        self.b = 0.0 if b is None else b
+        self.b1 = np.zeros(hidden, dtype=np.float32)
+
+    
+    @staticmethod
+    def sigmoid(x):
+        return 1 / (1 + np.exp(-x))
+
+    @staticmethod
     def relu(x):
         return np.maximum(0, x)
+
+    @staticmethod # correct win/lose loss
+    def bce_loss(pred, target):
+        pred = max(min(pred, 1 - 1e-9), 1e-9)
+        return -(target * math.log(pred) + (1 - target) * math.log(1 - pred))
         
     def forward(self, x):
-      
-        self.x = x
-        self.h = [] #input_wector
+        self.x = np.array(x, dtype=np.float32)
+        
+        s = self.w1 @ self.x + self.b1
+        self.h = ItemRanker.relu(s) #input_wector
        
-        for neuron in self.w1:
-           s = sum(w * xi for w, xi in zip(neuron, x))
-           self.h.append(self.relu(s))
-           
-        self.out_raw = sum(w * h_i for w, h_i in zip(self.w2, self.h)) + self.b
+        self.out_raw = float(self.w2 @ self.h + self.b)
         
         if self.out_raw >= 700:
             return 1.0
         if self.out_raw <= -700:
             return 0.0
             
-        return np.sigmoid(self.out_raw)
+        return ItemRanker.sigmoid(self.out_raw)
         
-    #correct loss on win/loss
-    def bce_loss(pred, target):
-        pred = max(min(pred, 1 - 1e-9), 1e-9)
-        return -(target * math.log(pred) + (1 - target) * math.log(1- pred))
-       
     def backward(self, pred, target, lr=0.001):
-        d_out = pred - target
+        d_out = np.clip(pred - target, -10, 10) # gradient of loss w.r.t. output
         
         # Updated w2 and bias
-        for i in range(len(self.w2)):
-            self.w2[i] -= lr * d_out * self.h[i]
-            
+        self.w2 -= lr * d_out * self.h
         self.b -= lr * d_out
         
-        for i, neuron in enumerate(self.w1):
-            if self.h[i] <= 0:
-                continue
-            
-            for j in range(len(neuron)):
-                neuron[j] -= lr * d_out * self.w2[i] * self.x[j]
-                
-                
-                
-#n = check notes;
-model = ItemRanker(n, hidden_size=64)
-# build dataset here
-x = 1 #match.champion.data
-y = 1 if 'win' else 0
-dataset = [(x, y)]
+        relu_mask = (self.h > 0).astype(np.float32)
+        grad_hidden = d_out * self.w2 * relu_mask
 
+        self.w1 -= lr * grad_hidden[:, None] * self.x[None, :]
+        self.b1 -= lr * grad_hidden
 
-for epoch in range(10):
-    total_loss = 0
-    
-    for x, y in dataset:
-        pred = model.forward(x)
-        loss = model.bce_loss(pred, y)
-        model.backward(pred, y, lr=0.001)
-        total_loss += loss
-      
-    print("Epoch", epoch, "Loss:", total_loss)
-    
+        # overfitting regularization
+        self.w1 -= lr * 0.0001 * self.w1
+        self.w2 -= lr * 0.0001 * self.w2
+        self.b1 -= lr * 0.0001 * self.b1
+
+    def save(self, path):
+        np.savez(path, w1=self.w1, w2=self.w2, b=self.b, b1=self.b1)
+
+    @staticmethod
+    def load(path):
+        data = np.load(path)
+        model = ItemRanker(
+            n=data['w1'].shape[1],
+            hidden=data['w1'].shape[0],
+            b=data['b']
+        )
+        model.w1 = data['w1']
+        model.w2 = data['w2']
+        model.b1 = data['b1']
+        return model

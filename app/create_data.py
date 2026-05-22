@@ -3,7 +3,7 @@ import aiohttp
 import pandas as pd
 from aiolimiter import AsyncLimiter
 
-API_KEY = "RGAPI-b01019ef-af32-4ac8-a56d-5840ca6bba5d"
+API_KEY = "RGAPI-7fb38c7a-7908-44ea-ac98-4629f0d6fa5e"
 
 HEADERS = {"X-Riot-Token": API_KEY}
 
@@ -123,9 +123,13 @@ async def collect_matches(session, match_ids):
                 all_rows.append({
                     "match_id": match["metadata"]["matchId"],
                     "puuid": p.get("puuid"),
-
+                    
+                    "mapId": match["info"].get("mapId"),
                     "team_id": 0 if p.get("teamId") == 100 else 1,
                     "win": p.get("win"),
+                    
+                    "gameDuration": match["info"].get("gameDuration"),
+                    "goldEarned": p.get("goldEarned"),
 
                     "champion": p.get("championName"),
                     "position": p.get("teamPosition"),

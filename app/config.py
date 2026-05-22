@@ -1,4 +1,6 @@
-FILE_PATH = "../dataset/matches.parquet" # path to the dataset file, must be parquet format
+FILE_PATH = "dataset/matches.parquet" # path to the dataset file, must be parquet format
+
+MODEL_PATH = "dataset/best_model.npz" # path to save/load the trained model weights
 
 ITEM_COLS = ["item0", "item1", "item2", "item3", "item4", "item5", "item6"] # item6 is trinket
 EXCLUDED_ITEMS = {

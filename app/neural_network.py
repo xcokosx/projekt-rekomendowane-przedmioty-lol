@@ -30,7 +30,7 @@ class ItemRanker:
 
     @staticmethod # correct win/lose loss
     def bce_loss(pred, target):
-        pred = max(min(pred, 1 - 1e-9), 1e-9)
+        pred = np.clip(pred, 1e-9, 1 - 1e-9)
         return -np.sum(target * np.log(pred) + (1 - target) * np.log(1 - pred))
         
     def forward(self, x):

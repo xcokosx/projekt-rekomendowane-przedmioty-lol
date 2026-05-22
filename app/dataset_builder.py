@@ -71,6 +71,8 @@ def build_recommender_dataset(df, champion_map, item_map, position_map):
     num_items = len(item_map)
 
     for _, row in df.iterrows():
+        if row["mapId"] != 11:
+            continue
         champ_idx = row["champion_idx"]
         pos_idx = row["position_idx"]
         win = 1 if row["win"] else 0
@@ -88,14 +90,14 @@ def build_recommender_dataset(df, champion_map, item_map, position_map):
             row["item5_idx"],
         ]
 
-        curret_items = []
+        current_items = []
 
         for slot in range(6):
             champ_vec = one_hot(champ_idx, size=len(champion_map))
             pos_vec = one_hot(pos_idx, size=len(position_map))
 
             item_state = np.zeros(num_items, dtype=np.float32)
-            for ci in curret_items:
+            for ci in current_items:
                 if ci >= 0:
                     item_state[ci] = 1.0
 
@@ -111,6 +113,6 @@ def build_recommender_dataset(df, champion_map, item_map, position_map):
             Y.append(target_vec)
 
             if next_item >= 0:
-                curret_items.append(next_item)
+                current_items.append(next_item)
 
     return np.array(X, dtype=np.float32), np.array(Y, dtype=np.float32)

@@ -1,15 +1,23 @@
-# Jak działa projekt:
+# REPORT
 
-1. Stworzenie danych dla sieci neuronowej:
-   Przy użyciu oficjalnego api od developera gry (https://developer.riotgames.com/)
-   pobraliśmy dane 250 graczy o najwyższej randze w grze. Na podstawie ich "puuid" pobraliśmy
-   po 50 ich ostacnich meczu. Następnie usuneliśmy duplikaty, żeby za chwilę stworzone dane nie były kilkukrotnie zduplikowane. Dzięki zdobytym "match_id" pobieramy dane o meczu i jego uczestnikach
+## Cel
 
-   #!!!1. Stworzenie konta na stronie developera w celu uzyskania własnego klucza API, ponieważ klucze te są ważne tylko 24 godziny. 
-    
+Przeprowadzić podstawowe testy jakości kodu i uruchomieniowe oraz zebrać wyniki i wnioski dla repozytorium.
 
-   2. preprocessor_json.py konwertuje plik matches.json do preprocessed_match_champion_data.json w celu łatwiejszego dostępu do danych o meczu  
-      rozegranym przez bohatera (jego sojuszników, przeciwników oraz zakupionych przedmiotów, a także jego aleję).
+## Przeprowadzone testy
 
-      Skrypt rozróżnia oraz grupuje mecze na podstawie match_id dołącza do rekordów, sojuszników oraz przeciwników z danego meczu.
-      Zamienia nazwę bohatera na jego odpowiednik ID, podobnie robi z przedmiotami, oraz innymi bohaterami, którzy brali udział w grze, również zmienia on aleję na jej ID.
+- Sprawdzenie lokalnych testów w katalogu `app/tests`.
+
+## Uzyskane wyniki
+
+- Testy jednostkowe: pliki testowe znajdują się w `app/tests`. Aby uruchomić i otrzymać wyniki, uruchom lokalnie `uv run pytest`.
+- Błędy i uwagi znalezione podczas inspekcji:
+    - Możliwy komunikat "Import 'numpy' could not be resolved" — należy zainstalować zależność w używanym interpreterze.
+    - Testy nie obejmują wszystkiego
+
+## Wnioski i rekomendacje
+
+1. Zainstalować zależności: `pip install numpy pandas`.
+2. Dodać testy by obejmowały jeszcze większą cześć kodu. Lepiej by priortezować te testy które mają najniższy % objęcia.
+
+---

@@ -1,13 +1,20 @@
 [project]
-name = "pytemp"
-description = "A simple Python package template"
+name = "projekt-rekomendowane-przedmioty-lol"
+description = "projekt-rekomendowane-przedmioty-lol"
 dynamic = ["version"]
 requires-python = ">=3.14"
 readme = "README.md"
 license = { file = "LICENSE.md"}
 
+dependencies = [
+    "numpy",
+    "pandas",
+    "aiohttp",
+    "aiolimiter"
+]
+
 [project.urls]
-"Homepage" = "https://github.com/wnowicki/pytemp"
+"Homepage" = "https://https://github.com/xcokosx/projekt-rekomendowane-przedmioty-lol"
 "Source" = "https://github.com/wnowicki/pytemp"
 
 [tool.pytest.ini_options]
@@ -71,3 +78,7 @@ dev = [
     "pytest-cov",
     "ruff",
 ]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["app"]

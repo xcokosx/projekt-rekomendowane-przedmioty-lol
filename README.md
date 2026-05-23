@@ -13,13 +13,14 @@
 
 ## Jak uruchomić?
 
-1. Zainstaluj zależności
+1. Zainstaluj zależności jeżeli ich nie posiadasz
 pip install numpy pandas
 
 2. Uruchom program
 uv run python -m app.main
 
-3. Uruchom testy
+## Testy
+
 uv run pytest
 
 ## Security

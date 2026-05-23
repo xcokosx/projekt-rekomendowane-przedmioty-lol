@@ -1,6 +1,6 @@
 import numpy as np
 from .train import train_model
-from .predict import recommend_from_names
+from .predict import recommend_from_names, load_item_id_to_name_map
 from .config import MODEL_PATH, FILE_PATH
 from .neural_network import ItemRanker
 from .mapping_loader import load_mappings
@@ -32,7 +32,12 @@ def predict(my_champion="Jinx",
         champion_map=champion_map,
         position_map=position_map,
     )
-    print("Recommended build:", build)
+    
+    # Convert item indices to names
+    idx_to_name = load_item_id_to_name_map()
+    build_names = [idx_to_name.get(idx, f"Unknown({idx})") for idx in build]
+    
+    print("Recommended build:", build_names)
 
 def print_mappings_champion():
     champion_map, position_map, item_map = load_mappings()

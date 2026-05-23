@@ -6,6 +6,13 @@ requires-python = ">=3.14"
 readme = "README.md"
 license = { file = "LICENSE.md"}
 
+dependencies = [
+    "numpy",
+    "pandas",
+    "aiohttp",
+    "aiolimiter"
+]
+
 [project.urls]
 "Homepage" = "https://https://github.com/xcokosx/projekt-rekomendowane-przedmioty-lol"
 "Source" = "https://github.com/wnowicki/pytemp"

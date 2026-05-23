@@ -1,4 +1,5 @@
 import numpy as np
+import json
 from .neural_network import ItemRanker
 from .dataset_builder import one_hot
 
@@ -6,6 +7,30 @@ from .dataset_builder import one_hot
 def load_model(model_path):
     """Load trained model using ItemRanker.load()."""
     return ItemRanker.load(model_path)
+
+# Nazwy itemów zamiast id
+def load_item_id_to_name_map(items_json_path="app/data/items.json"):
+    """Load mapping from item_map index to item name using items.json."""
+    
+    with open(items_json_path, 'r') as f:
+        items_data = json.load(f)
+    
+    id_to_name = {}
+    for item in items_data.get('full_list', []):
+        id_to_name[item['id']] = item['name']
+   
+    from .mapping_loader import load_mappings
+    champion_map, position_map, item_map = load_mappings()
+
+    idx_to_name = {}
+    for item_id_str, idx in item_map.items():
+        item_id = int(item_id_str)
+        if item_id in id_to_name:
+            idx_to_name[idx] = id_to_name[item_id]
+        else:
+            idx_to_name[idx] = f"Unknown(ID:{item_id})"
+    
+    return idx_to_name
 
 
 def build_team_vectors_from_names(allies, enemies, champion_map):

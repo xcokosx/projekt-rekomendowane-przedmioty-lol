@@ -10,16 +10,23 @@
 ## Test
 
 ```shell
-#run tests
-uv run pytest
 
-#run cli script
+## Jak uruchomić?
+
+1. Zainstaluj zależności
+pip install numpy pandas
+
+2. Uruchom program
 uv run python -m app.main
-```
+
+3. Uruchom testy
+uv run pytest
 
 ## Security
 
-If you discover any security-related issues, please email [email](mailto:email) instead of using the issue tracker.
+If you discover any security-related issues, please email [email](mailto:jakubkokowski7@gmail.com) instead of using the issue tracker.
 
 ---
-Copyright (c) [year] [fullname]
+
+Copyright (c) [2026] [Jakub Kokowski, Piotr Baka]
+```
